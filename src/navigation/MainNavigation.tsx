@@ -4,7 +4,7 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
-import Text from '../components/atom/Text';
+import BottomTabNavigation from './BottomTabNavigation';
 
 export type MainStackParams = {
   BottomTabNavigation: undefined;
@@ -24,7 +24,7 @@ const MainNavigation = () => {
     <Navigator
       initialRouteName={'BottomTabNavigation'}
       screenOptions={{ orientation: 'portrait', headerShown: false }}>
-      <Screen name="BottomTabNavigation" component={() => <Text>aasdasdsd</Text>} />
+      <Screen name="BottomTabNavigation" component={BottomTabNavigation} />
     </Navigator>
   );
 };
