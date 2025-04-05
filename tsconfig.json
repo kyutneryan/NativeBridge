@@ -2,6 +2,8 @@
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "module": "es2015"
   }
 }
