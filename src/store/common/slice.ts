@@ -4,13 +4,13 @@ interface CommonState {
   isLoading: boolean;
 }
 
-const initialState: CommonState = {
+export const commonInitialState: CommonState = {
   isLoading: false,
 };
 
 export const commonSlice = createSlice({
   name: 'common',
-  initialState,
+  initialState: commonInitialState,
   reducers: {
     setGlobalLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;

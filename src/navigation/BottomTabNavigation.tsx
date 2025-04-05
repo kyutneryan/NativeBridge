@@ -5,7 +5,8 @@ import GeolocationActiveIcon from '../assets/icons/GeolocationActiveIcon.svg';
 import GeolocationIcon from '../assets/icons/GeolocationIcon.svg';
 import MessagesActiveIcon from '../assets/icons/MessagesActiveIcon.svg';
 import MessagesIcon from '../assets/icons/MessagesIcon.svg';
-import Text from '../components/atom/Text';
+import GeolocationScreen from '../screens/bottom-tab-navigation/GeolocationScreen';
+import MessagingScreen from '../screens/bottom-tab-navigation/MessagingScreen';
 
 export type BottomTabStackParams = {
   GeolocationScreen: undefined;
@@ -44,19 +45,13 @@ const BottomTabNavigation = () => {
       screenOptions={{ lazy: true, headerShown: false }}>
       <Screen
         name="GeolocationScreen"
-        options={{
-          tabBarLabel: 'Geolocation',
-          tabBarIcon: renderTabBarIcon('GeolocationScreen'),
-        }}
-        component={() => <Text>GeolocationScreen</Text>}
+        options={{ tabBarLabel: 'Geolocation', tabBarIcon: renderTabBarIcon('GeolocationScreen') }}
+        component={GeolocationScreen}
       />
       <Screen
         name="MessagingScreen"
-        options={{
-          tabBarLabel: 'Messaging',
-          tabBarIcon: renderTabBarIcon('MessagingScreen'),
-        }}
-        component={() => <Text>MessagingScreen</Text>}
+        options={{ tabBarLabel: 'Messaging', tabBarIcon: renderTabBarIcon('MessagingScreen') }}
+        component={MessagingScreen}
       />
     </Navigator>
   );

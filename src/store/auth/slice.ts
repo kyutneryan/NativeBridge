@@ -6,14 +6,14 @@ interface AuthState {
   isLoggedIn: boolean;
 }
 
-const initialState: AuthState = {
+export const authInitialState: AuthState = {
   token: null,
   isLoggedIn: false,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: authInitialState,
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;

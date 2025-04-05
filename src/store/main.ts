@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import persistStore from 'redux-persist/es/persistStore';
-import rootReducer from './reducers';
+import rootReducer, { RootState } from './reducers';
 
 const persistConfig = {
   key: 'root',
@@ -27,7 +27,6 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

@@ -5,13 +5,13 @@ interface UserState {
   user: Maybe<IUser>;
 }
 
-const initialState: UserState = {
+export const userInitialState: UserState = {
   user: null,
 };
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: userInitialState,
   reducers: {
     setUser: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload;
