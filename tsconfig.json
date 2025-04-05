@@ -4,6 +4,6 @@
     "jsx": "react",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "module": "es2015"
+    "module": "es2020"
   }
 }
