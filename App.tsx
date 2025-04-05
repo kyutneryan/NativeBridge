@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import Loading from './src/components/atom/Loading';
 import AppNavigation from './src/navigation/AppNavigation';
 import { persistor, store } from './src/store';
 
@@ -13,10 +14,10 @@ const queryClient = new QueryClient();
 
 function App(): React.JSX.Element {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loading visible />}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <PersistGate loading={null} persistor={persistor}>
+          <PersistGate loading={<Loading visible />} persistor={persistor}>
             <GestureHandlerRootView style={styles.flex}>
               <SafeAreaProvider>
                 <NavigationContainer>
