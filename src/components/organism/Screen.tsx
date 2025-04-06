@@ -8,6 +8,7 @@ import { HORIZONTAL_PADDING } from '../../utils/constants';
 interface Props {
   edges?: Edge[];
   withHeader?: boolean;
+  hasBack?: boolean;
   style?: StyleProp<ViewStyle>;
   safeAreaStyles?: StyleProp<ViewStyle>;
   barStyle?: StatusBarStyle | null;
@@ -16,6 +17,7 @@ interface Props {
 const Screen: FC<PropsWithChildren<Props>> = ({
   edges,
   withHeader = false,
+  hasBack = false,
   children,
   style,
   safeAreaStyles,
@@ -24,7 +26,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
   return (
     <SafeAreaView edges={edges} style={[styles.base, safeAreaStyles]}>
       <StatusBar barStyle={barStyle} />
-      {withHeader ? <MainHeader /> : null}
+      {withHeader ? <MainHeader hasBack={hasBack} /> : null}
       <View style={[styles.child, style]}>{children}</View>
     </SafeAreaView>
   );

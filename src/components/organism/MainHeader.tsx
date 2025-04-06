@@ -1,8 +1,10 @@
 import React, { FC, memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import LogoutIcon from '../../assets/icons/LogoutIcon.svg';
+import MessagesIcon from '../../assets/icons/MessagesIcon.svg';
 import { BottomTabStackParams } from '../../navigation/BottomTabNavigation';
+import { MainNavigatorProp, MainStackParams } from '../../navigation/MainNavigation';
 import { useAppDispatch } from '../../store';
 import { resetAllState } from '../../store/reducers';
 import { colors } from '../../utils/colors';
@@ -14,41 +16,44 @@ interface Props {
   hasBack?: boolean;
 }
 
-type RouteName = keyof BottomTabStackParams;
+type RouteName = keyof (BottomTabStackParams & MainStackParams);
 
 const MainHeader: FC<Props> = ({ hasBack = false }) => {
   const route = useRoute<RouteProp<BottomTabStackParams>>();
+  const navigation = useNavigation<MainNavigatorProp<'BottomTabNavigation'>>();
   const dispatch = useAppDispatch();
 
   const logout = useCallback(() => {
     dispatch(resetAllState());
   }, [dispatch]);
 
-  const renderLeftComponent = useCallback((routeName: RouteName) => {
-    switch (routeName) {
-      case 'GeolocationScreen':
-      case 'MessagingScreen':
-        return null;
-      default:
-        return null;
-    }
-  }, []);
-
-  const renderRightComponent = useCallback(
+  const renderLeftComponent = useCallback(
     (routeName: RouteName) => {
       switch (routeName) {
         case 'GeolocationScreen':
-        case 'MessagingScreen':
-          return (
-            <View style={styles.homeRight}>
-              <IconButton Icon={<LogoutIcon width={20} />} onPress={logout} />
-            </View>
-          );
+          return <IconButton Icon={<LogoutIcon width={24} />} onPress={logout} />;
         default:
           return null;
       }
     },
     [logout],
+  );
+
+  const renderRightComponent = useCallback(
+    (routeName: RouteName) => {
+      switch (routeName) {
+        case 'GeolocationScreen':
+          return (
+            <IconButton
+              Icon={<MessagesIcon width={24} />}
+              onPress={() => navigation.navigate('MessagingScreen')}
+            />
+          );
+        default:
+          return null;
+      }
+    },
+    [navigation],
   );
 
   const renderCenterComponent = useCallback((routeName: RouteName) => {
@@ -82,7 +87,6 @@ const MainHeader: FC<Props> = ({ hasBack = false }) => {
 
 const styles = StyleSheet.create({
   header: { backgroundColor: colors.primary },
-  homeRight: { flexDirection: 'row', alignItems: 'center' },
   heading: { color: colors.white, fontWeight: '600' },
 });
 

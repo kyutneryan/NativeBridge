@@ -7,6 +7,7 @@ const MessagingScreen = () => {
   return (
     <Screen
       withHeader
+      hasBack
       edges={['top']}
       barStyle="light-content"
       safeAreaStyles={styles.safeAreaStyles}
