@@ -3,6 +3,7 @@ import { Alert, PermissionsAndroid, Platform, StyleSheet, View } from 'react-nat
 import Geolocation from '@react-native-community/geolocation';
 import LocationIcon from '../../assets/icons/LocationIcon.svg';
 import IconButton from '../../components/atom/IconButton';
+import Loading from '../../components/atom/Loading';
 import Text from '../../components/atom/Text';
 import Screen from '../../components/organism/Screen';
 import { setGlobalLoading, useAppDispatch } from '../../store';
@@ -91,7 +92,7 @@ const GeolocationScreen = () => {
         <Text>Longitude: {location.longitude}</Text>
       </View>
       {Platform.OS === 'ios' && (
-        <Suspense>
+        <Suspense fallback={<Loading visible />}>
           <MapView ref={mapRef} style={styles.map} initialRegion={DEFAULT_LOCATION}>
             <Marker coordinate={location} title="Your Location" />
           </MapView>
