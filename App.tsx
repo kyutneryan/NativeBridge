@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { Suspense, useEffect } from 'react';
+import { Alert, StyleSheet } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -13,6 +14,14 @@ import { persistor, store } from './src/store';
 const queryClient = new QueryClient();
 
 function App(): React.JSX.Element {
+  const { isConnected } = useNetInfo();
+
+  useEffect(() => {
+    if (isConnected === false) {
+      Alert.alert('No Internet Connection', 'Please check your internet connection');
+    }
+  }, [isConnected]);
+
   return (
     <Suspense fallback={<Loading visible />}>
       <Provider store={store}>

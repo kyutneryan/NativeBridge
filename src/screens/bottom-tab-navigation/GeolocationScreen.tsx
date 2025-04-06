@@ -1,7 +1,6 @@
-import React, { ElementRef, Suspense, useEffect, useRef, useState } from 'react';
+import React, { ElementRef, Suspense, useRef, useState } from 'react';
 import { Alert, PermissionsAndroid, Platform, StyleSheet, View } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
-import { useNetInfo } from '@react-native-community/netinfo';
 import LocationIcon from '../../assets/icons/LocationIcon.svg';
 import IconButton from '../../components/atom/IconButton';
 import Text from '../../components/atom/Text';
@@ -29,7 +28,6 @@ const GeolocationScreen = () => {
   const dispatch = useAppDispatch();
   const [location, setLocation] = useState<LocationState>(DEFAULT_LOCATION);
   const [errorMsg, setErrorMsg] = useState<string>('');
-  const { isConnected } = useNetInfo();
 
   const requestLocationPermission = async () => {
     if (Platform.OS === 'android') {
@@ -79,12 +77,6 @@ const GeolocationScreen = () => {
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     );
   };
-
-  useEffect(() => {
-    if (isConnected === false) {
-      setErrorMsg('Please check your internet connection');
-    }
-  }, [isConnected]);
 
   return (
     <Screen
