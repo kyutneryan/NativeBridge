@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import { Keyboard } from 'react-native';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import uuid from 'react-native-uuid';
 import { object as yupObject, string as yupString } from 'yup';
 import TextInput from '../../components/atom/TextInput';
 import AuthWrapper from '../../components/organism/AuthWrapper';
 import { AuthFormData } from '../../models/formData';
 import { setIsLoggedIn, setToken, setUser, useAppDispatch } from '../../store';
-import { AUTH_TOKEN } from '../../utils/colors';
 
 const loginSchema = yupObject({
   email: yupString().email().required('Email is required'),
@@ -19,7 +19,7 @@ const LoginScreen = () => {
     data => {
       Keyboard.dismiss();
       dispatch(setUser(data));
-      dispatch(setToken(AUTH_TOKEN));
+      dispatch(setToken(uuid.v4()));
       dispatch(setIsLoggedIn());
     },
     [dispatch],
