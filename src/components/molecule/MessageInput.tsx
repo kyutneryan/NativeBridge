@@ -17,7 +17,10 @@ const MessageInput = () => {
   const insets = useSafeAreaInsets();
   const dispatch = useAppDispatch();
   const timeoutRef = useRef<Maybe<NodeJS.Timeout>>(null);
-  const [bottom, setBottom] = useState<number>(insets.bottom);
+
+  const initalBottom = insets.bottom + verticalScale(10);
+
+  const [bottom, setBottom] = useState<number>(initalBottom);
 
   const { control, setValue, handleSubmit } = useForm<MessageFormData>({
     defaultValues: { text: '' },
@@ -28,31 +31,29 @@ const MessageInput = () => {
     if (!message) {
       return;
     }
+    console.log(MessageModule);
+    try {
+      dispatch(setMessage({ id: uuid.v4(), text: message, from: 'user', color: colors.primary }));
+      const result = await MessageModule.sendMessage(message);
 
-    dispatch(setMessage({ id: uuid.v4(), text: message, from: 'user', color: colors.primary }));
-
-    MessageModule.sendMessage(message)
-      .then((result: string) => {
-        timeoutRef.current = setTimeout(() => {
-          dispatch(
-            setMessage({ id: uuid.v4(), text: result, from: 'native', color: colors.success }),
-          );
-        }, 500);
-      })
-      .catch((e: Error) => {
-        console.log(e);
+      timeoutRef.current = setTimeout(() => {
         dispatch(
-          setMessage({
-            id: uuid.v4(),
-            text: 'Error communicating with native module.',
-            from: 'native',
-            color: colors.danger,
-          }),
+          setMessage({ id: uuid.v4(), text: result, from: 'native', color: colors.success }),
         );
-      })
-      .finally(() => {
-        setValue('text', '');
-      });
+      }, 500);
+    } catch (e) {
+      console.log(e);
+      dispatch(
+        setMessage({
+          id: uuid.v4(),
+          text: 'Error communicating with native module.',
+          from: 'native',
+          color: colors.danger,
+        }),
+      );
+    } finally {
+      setValue('text', '');
+    }
   };
 
   useEffect(() => {
@@ -61,14 +62,14 @@ const MessageInput = () => {
     });
 
     const willHide = Keyboard.addListener('keyboardWillHide', () => {
-      setBottom(insets.bottom);
+      setBottom(initalBottom);
     });
 
     return () => {
       willShow.remove();
       willHide.remove();
     };
-  }, [insets.bottom]);
+  }, [initalBottom]);
 
   useEffect(() => {
     return () => {
