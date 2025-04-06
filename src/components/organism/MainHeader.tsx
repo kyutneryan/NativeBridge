@@ -12,7 +12,6 @@ import Header from '../molecule/Header';
 
 interface Props {
   hasBack?: boolean;
-  hasSearch?: boolean;
 }
 
 type RouteName = keyof BottomTabStackParams;

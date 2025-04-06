@@ -1,14 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import MainHeader from '../../components/organism/MainHeader';
 import Screen from '../../components/organism/Screen';
 import { colors } from '../../utils/colors';
 
 const MessagingScreen = () => {
   return (
-    <Screen edges={['top']} barStyle="light-content" safeAreaStyles={styles.safeAreaStyles}>
-      <MainHeader />
-    </Screen>
+    <Screen
+      withHeader
+      edges={['top']}
+      barStyle="light-content"
+      safeAreaStyles={styles.safeAreaStyles}
+    />
   );
 };
 

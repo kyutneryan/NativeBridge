@@ -1,6 +1,7 @@
 import React, { FC, JSX, memo } from 'react';
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import Text from './Text';
+import { colors } from '../../utils/colors';
 import { horizontalScale, moderateScale } from '../../utils/scale';
 
 interface Props extends TouchableOpacityProps {
@@ -27,6 +28,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.primary,
+    width: moderateScale(48),
+    height: moderateScale(48),
+    borderRadius: moderateScale(24),
   },
   icon: {
     alignItems: 'center',
