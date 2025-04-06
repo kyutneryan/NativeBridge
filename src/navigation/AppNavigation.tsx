@@ -1,9 +1,8 @@
 import React, { memo, Suspense } from 'react';
 import Loading from '../components/atom/Loading';
 import { getIsLoading, getIsLoggedIn, useAppSelector } from '../store';
-
-const AuthNavigation = React.lazy(() => import('./AuthNavigation'));
-const MainNavigation = React.lazy(() => import('./MainNavigation'));
+import AuthNavigation from './AuthNavigation';
+import MainNavigation from './MainNavigation';
 
 const AppNavigation = () => {
   const isLoggedIn = useAppSelector(getIsLoggedIn);

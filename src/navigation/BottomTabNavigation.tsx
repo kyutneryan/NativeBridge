@@ -26,7 +26,11 @@ const BottomTabNavigation = () => {
     return ({ focused }: { focused: boolean; color: string; size: number }) => {
       switch (icon) {
         case 'GeolocationScreen':
-          return focused ? <GeolocationActiveIcon width={24} /> : <GeolocationIcon width={20} />;
+          return focused ? (
+            <GeolocationActiveIcon width={24} height={24} />
+          ) : (
+            <GeolocationIcon width={20} height={20} />
+          );
         default:
           return null;
       }
@@ -34,9 +38,7 @@ const BottomTabNavigation = () => {
   }, []);
 
   return (
-    <Navigator
-      initialRouteName={'GeolocationScreen'}
-      screenOptions={{ lazy: true, headerShown: false }}>
+    <Navigator initialRouteName={'GeolocationScreen'} screenOptions={{ headerShown: false }}>
       <Screen
         name="GeolocationScreen"
         options={{ tabBarLabel: 'Geolocation', tabBarIcon: renderTabBarIcon('GeolocationScreen') }}

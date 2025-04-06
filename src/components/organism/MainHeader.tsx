@@ -31,7 +31,7 @@ const MainHeader: FC<Props> = ({ hasBack = false }) => {
     (routeName: RouteName) => {
       switch (routeName) {
         case 'GeolocationScreen':
-          return <IconButton Icon={<LogoutIcon width={24} />} onPress={logout} />;
+          return <IconButton Icon={<LogoutIcon width={24} height={24} />} onPress={logout} />;
         default:
           return null;
       }
@@ -45,7 +45,7 @@ const MainHeader: FC<Props> = ({ hasBack = false }) => {
         case 'GeolocationScreen':
           return (
             <IconButton
-              Icon={<MessagesIcon width={24} />}
+              Icon={<MessagesIcon width={24} height={24} />}
               onPress={() => navigation.navigate('MessagingScreen')}
             />
           );

@@ -86,7 +86,7 @@ const GeolocationScreen = () => {
       barStyle="light-content"
       style={styles.base}
       safeAreaStyles={styles.safeAreaStyles}>
-      <IconButton Icon={<LocationIcon width={24} />} onPress={getLocation} />
+      <IconButton Icon={<LocationIcon width={24} height={24} />} onPress={getLocation} />
       <View style={styles.textContainer}>
         <Text>Latitude: {location.latitude}</Text>
         <Text>Longitude: {location.longitude}</Text>

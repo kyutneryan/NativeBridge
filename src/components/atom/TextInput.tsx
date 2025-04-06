@@ -1,4 +1,4 @@
-import React, { forwardRef, JSX, memo, useCallback, useState } from 'react';
+import React, { FC, JSX, memo, useCallback, useState } from 'react';
 import {
   LayoutChangeEvent,
   StyleProp,
@@ -8,6 +8,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import IconButton from './IconButton';
 import Text from './Text';
 import { colors } from '../../utils/colors';
 import { HORIZONTAL_PADDING, WINDOW_WIDTH } from '../../utils/constants';
@@ -17,64 +18,61 @@ interface Props extends TextInputProps {
   label?: string;
   hasError?: boolean;
   labelColor?: string;
-  icon?: JSX.Element;
+  Icon?: JSX.Element;
+  onIconPress?: () => void;
   wrapperStyle?: StyleProp<ViewStyle>;
   baseStyle?: StyleProp<ViewStyle>;
   onLayout?: (event: LayoutChangeEvent) => void;
   error?: (string | undefined)[];
 }
 
-const Input = forwardRef<TextInput, Props>(
-  (
-    {
-      label,
-      secureTextEntry = false,
-      hasError = false,
-      icon,
-      wrapperStyle,
-      baseStyle,
-      onLayout,
-      style,
-      labelColor,
-      error,
-      ...rest
-    },
-    ref,
-  ) => {
-    const [borderColor, setBorderColor] = useState<string>(colors.blackOpacity);
+const Input: FC<Props> = ({
+  label,
+  secureTextEntry = false,
+  hasError = false,
+  Icon,
+  wrapperStyle,
+  baseStyle,
+  onLayout,
+  onIconPress,
+  style,
+  labelColor,
+  error,
+  ...rest
+}) => {
+  const [borderColor, setBorderColor] = useState<string>(colors.blackOpacity);
 
-    const onFocus = useCallback(() => setBorderColor(colors.black), []);
-    const onBlur = useCallback(() => setBorderColor(colors.blackOpacity), []);
+  const onFocus = useCallback(() => setBorderColor(colors.black), []);
+  const onBlur = useCallback(() => setBorderColor(colors.blackOpacity), []);
 
-    return (
-      <View style={[styles.base, baseStyle]} onLayout={onLayout}>
-        {!!label && (
-          <Text style={[styles.label, { ...(labelColor ? { color: labelColor } : {}) }]}>
-            {label}
-          </Text>
-        )}
-        <View
-          style={[styles.wrapper, { borderColor }, hasError && styles.wrapperError, wrapperStyle]}>
-          <TextInput
-            ref={ref}
-            spellCheck={false}
-            style={[
-              styles.input,
-              hasError && styles.inputError,
-              (icon || secureTextEntry) && styles.inputWithIcon,
-              style,
-            ]}
-            placeholderTextColor={hasError ? colors.dangerOpacity : colors.blackOpacity}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...rest}
-          />
-        </View>
-        {hasError && !!error && renderErrorMessages(error)}
+  return (
+    <View style={[styles.base, baseStyle]} onLayout={onLayout}>
+      {!!label && (
+        <Text style={[styles.label, { ...(labelColor ? { color: labelColor } : {}) }]}>
+          {label}
+        </Text>
+      )}
+      <View
+        style={[styles.wrapper, { borderColor }, hasError && styles.wrapperError, wrapperStyle]}>
+        <TextInput
+          spellCheck={false}
+          style={[
+            styles.input,
+            hasError && styles.inputError,
+            (Icon || secureTextEntry) && styles.inputWithIcon,
+            style,
+          ]}
+          placeholderTextColor={hasError ? colors.dangerOpacity : colors.blackOpacity}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          {...rest}
+        />
+        {!!Icon && <IconButton onPress={onIconPress} Icon={Icon} />}
       </View>
-    );
-  },
-);
+      {hasError && !!error && renderErrorMessages(error)}
+    </View>
+  );
+};
 
 export const renderErrorMessages = (error: (string | undefined)[]) => {
   return error?.map((message, idx) => {
