@@ -1,4 +1,4 @@
-import React, { memo, Suspense } from 'react';
+import React from 'react';
 import Loading from '../components/atom/Loading';
 import { getIsLoading, getIsLoggedIn, useAppSelector } from '../store';
 import AuthNavigation from './AuthNavigation';
@@ -10,12 +10,10 @@ const AppNavigation = () => {
 
   return (
     <>
-      <Suspense fallback={<Loading visible />}>
-        {isLoggedIn ? <MainNavigation /> : <AuthNavigation />}
-      </Suspense>
+      {isLoggedIn ? <MainNavigation /> : <AuthNavigation />}
       <Loading visible={isGlobalLoading} />
     </>
   );
 };
 
-export default memo(AppNavigation);
+export default AppNavigation;

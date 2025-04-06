@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { ActivityIndicator, Modal, StyleSheet, View } from 'react-native';
 import { colors } from '../../utils/colors';
 
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(Loading);
+export default Loading;

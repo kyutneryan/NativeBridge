@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HEADER_HEIGHT } from '../../utils/constants';
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(AuthHeader);
+export default AuthHeader;

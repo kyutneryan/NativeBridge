@@ -19,7 +19,6 @@ const MessageInput = () => {
   const timeoutRef = useRef<Maybe<NodeJS.Timeout>>(null);
 
   const initalBottom = insets.bottom + verticalScale(10);
-
   const [bottom, setBottom] = useState<number>(initalBottom);
 
   const { control, setValue, handleSubmit } = useForm<MessageFormData>({
@@ -31,7 +30,7 @@ const MessageInput = () => {
     if (!message) {
       return;
     }
-    console.log(MessageModule);
+
     try {
       dispatch(setMessage({ id: uuid.v4(), text: message, from: 'user', color: colors.primary }));
       const result = await MessageModule.sendMessage(message);

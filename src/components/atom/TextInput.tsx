@@ -1,4 +1,4 @@
-import React, { FC, JSX, memo, useCallback, useState } from 'react';
+import React, { FC, JSX, useCallback, useState } from 'react';
 import {
   LayoutChangeEvent,
   StyleProp,
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
     lineHeight: verticalScale(16),
   },
 });
-export default memo(Input);
+export default Input;

@@ -1,4 +1,4 @@
-import React, { FC, JSX, memo } from 'react';
+import React, { FC, JSX } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BackIcon from '../../assets/icons/BackIcon.svg';
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   left: { flex: 1, zIndex: 1 },
 });
 
-export default memo(Header);
+export default Header;

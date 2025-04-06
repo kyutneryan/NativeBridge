@@ -1,4 +1,4 @@
-import { FC, memo, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import React from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   btnWrapper: { paddingVertical: verticalScale(15) },
 });
 
-export default memo(AuthWrapper);
+export default AuthWrapper;

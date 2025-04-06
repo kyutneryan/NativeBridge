@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { Keyboard } from 'react-native';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -12,8 +12,7 @@ import { AUTH_TOKEN } from '../../utils/colors';
 const loginSchema = yupObject({
   email: yupString().email().required('Email is required'),
 });
-
-export const LoginScreen = memo(() => {
+const LoginScreen = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<AuthFormData> = useCallback(
@@ -31,13 +30,8 @@ export const LoginScreen = memo(() => {
     resolver: yupResolver(loginSchema),
   });
 
-  const btnProps = useMemo(
-    () => ({ text: 'Login', onPress: handleSubmit(onSubmit) }),
-    [handleSubmit, onSubmit],
-  );
-
   return (
-    <AuthWrapper heading={'Login'} btnProps={btnProps}>
+    <AuthWrapper heading={'Login'} btnProps={{ text: 'Login', onPress: handleSubmit(onSubmit) }}>
       <Controller
         name="email"
         control={control}
@@ -55,4 +49,6 @@ export const LoginScreen = memo(() => {
       />
     </AuthWrapper>
   );
-});
+};
+
+export default LoginScreen;

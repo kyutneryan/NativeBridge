@@ -1,10 +1,10 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
-import { LoginScreen } from '../screens/auth/LoginScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
 
 export type AuthStackParams = {
   LoginScreen: undefined;
@@ -29,4 +29,4 @@ const AuthNavigator: FC = () => {
   );
 };
 
-export default memo(AuthNavigator);
+export default AuthNavigator;

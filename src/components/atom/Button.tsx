@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   text: { textAlign: 'center', fontWeight: '500', lineHeight: verticalScale(16) },
 });
 
-export default memo(Button);
+export default Button;

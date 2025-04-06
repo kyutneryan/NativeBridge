@@ -1,4 +1,4 @@
-import React, { FC, memo, PropsWithChildren } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { StatusBar, StatusBarStyle, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Edge, SafeAreaView } from 'react-native-safe-area-context';
 import MainHeader from './MainHeader';
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
   child: { flex: 1, backgroundColor: colors.white, paddingHorizontal: HORIZONTAL_PADDING },
 });
 
-export default memo(Screen);
+export default Screen;

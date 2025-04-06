@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import LogoutIcon from '../../assets/icons/LogoutIcon.svg';
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
   heading: { color: colors.white, fontWeight: '600' },
 });
 
-export default memo(MainHeader);
+export default MainHeader;

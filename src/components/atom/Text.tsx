@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
 import { colors } from '../../utils/colors';
 import { moderateScale } from '../../utils/scale';
@@ -24,4 +24,5 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
 });
-export default memo(TextComponent);
+
+export default TextComponent;

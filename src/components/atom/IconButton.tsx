@@ -1,4 +1,4 @@
-import React, { FC, JSX, memo } from 'react';
+import React, { FC, JSX } from 'react';
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import Text from './Text';
 import { colors } from '../../utils/colors';
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   disabled: { opacity: 0.4 },
 });
 
-export default memo(IconButton);
+export default IconButton;
